@@ -29,7 +29,7 @@ class Solution {
                 }
             }
         }
-        
+        System.gc();
         return -1;
     }
 }
