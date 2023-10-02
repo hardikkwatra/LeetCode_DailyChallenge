@@ -1,24 +1,24 @@
 class Solution {
     public boolean winnerOfGame(String colors) {
-        int aCnt=0,bCnt=0;
-        int aTemp=0,bTemp=0;
+        int a=0,b=0;
+        int a1=0,b1=0;
         for(char c : colors.toCharArray()){
             if(c=='A'){
-                bTemp=0;
-                aTemp++;
-                if(aTemp>=3){
-                    aCnt++;
+                b1=0;
+                a1++;
+                if(a1>=3){
+                    a++;
                 }
             }
             else{
-                aTemp=0;
-                bTemp++;
-                if(bTemp>=3){
-                    bCnt++;
+                a1=0;
+                b1++;
+                if(b1>=3){
+                    b++;
                 }
             }
         }
-        if(aCnt>bCnt)
+        if(a>b)
             return true;
         else
         return false;
