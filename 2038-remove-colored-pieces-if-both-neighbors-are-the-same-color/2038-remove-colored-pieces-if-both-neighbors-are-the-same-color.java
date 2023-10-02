@@ -1,26 +1,27 @@
-public class Solution {
+class Solution {
     public boolean winnerOfGame(String colors) {
-        int alice_plays = 0, bob_plays = 0, count = 0;
-        
-        for (int i = 1; i < colors.length(); i++) {
-            if (colors.charAt(i) == colors.charAt(i - 1)) {
-                count++;
-            } else {
-                if (colors.charAt(i - 1) == 'A') {
-                    alice_plays += Math.max(0, count - 1);
-                } else {
-                    bob_plays += Math.max(0, count - 1);
+        int aCnt=0,bCnt=0;
+        int aTemp=0,bTemp=0;
+        for(char c : colors.toCharArray()){
+            if(c=='A'){
+                bTemp=0;
+                aTemp++;
+                if(aTemp>=3){
+                    aCnt++;
                 }
-                count = 0;
+            }
+            else{
+                aTemp=0;
+                bTemp++;
+                if(bTemp>=3){
+                    bCnt++;
+                }
             }
         }
-
-        if (colors.charAt(colors.length() - 1) == 'A') {
-            alice_plays += Math.max(0, count - 1);
-        } else {
-            bob_plays += Math.max(0, count - 1);
-        }
+        if(aCnt>bCnt)
+            return true;
+        else
+        return false;
         
-        return alice_plays > bob_plays;
     }
 }
