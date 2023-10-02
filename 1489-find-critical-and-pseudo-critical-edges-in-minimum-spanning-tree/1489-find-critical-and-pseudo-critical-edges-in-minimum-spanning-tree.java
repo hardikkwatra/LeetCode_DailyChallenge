@@ -1,89 +1,76 @@
-class UnionFind{
-    final int[] parents;
-    int count;
-    
-    public UnionFind(int n){
-        this.parents = new int[n];
-        reset();
+class UnionFind {
+    private int[] parent;
+
+    public UnionFind(int n) {
+        parent = new int[n];
+        for (int i = 0; i < n; i++)
+            parent[i] = i;
     }
-    
-    public void reset(){
-        for(int i =0;i<parents.length;i++){
-            parents[i] = i;
-        }
-        count = parents.length;
+
+    public int findParent(int p) {
+        return parent[p] == p ? p : (parent[p] = findParent(parent[p]));
     }
-    
-    public int find(int i){
-        int parent = parents[i];
-        if(parent == i){
-            return i;
-        }else{
-            int root = find(parent);
-            parents[i] = root;
-            return root;
-        }
+
+    public void union(int u, int v) {
+        int pu = findParent(u), pv = findParent(v);
+        parent[pu] = pv;
     }
-    
-    public boolean union(int i, int j){
-        int r1 = find(i);
-        int r2 = find(j);
-        if(r1 != r2){
-            count--;
-            parents[r1] = r2;
-            return true;
-        }else{
-            return false;
-        }
-    }
-    
 }
 
 class Solution {
     public List<List<Integer>> findCriticalAndPseudoCriticalEdges(int n, int[][] edges) {
-       
-        List<Integer>criticals = new ArrayList<>();
-        List<Integer> pseduos = new ArrayList<>();
+        List<Integer> critical = new ArrayList<>();
+        List<Integer> pseudoCritical = new ArrayList<>();
         
-        Map<int[], Integer> map = new HashMap<>();
-        for(int i =0;i<edges.length;i++){
-            map.put(edges[i], i);
-        }
-        
-        Arrays.sort(edges, (e1, e2)->Integer.compare(e1[2], e2[2]));
-        int minCost = buildMST(n, edges, null, null);
-        
-        for(int i =0;i<edges.length;i++){
+        for (int i = 0; i < edges.length; i++) {
             int[] edge = edges[i];
-            int index = map.get(edge);
-            int costWithout = buildMST(n, edges, null, edge);
-            if(costWithout > minCost){
-                criticals.add(index);
-            }else{
-                int costWith = buildMST(n, edges, edge, null);
-                if(costWith == minCost){
-                    pseduos.add(index);
-                }
-            }
-            
+            edge = Arrays.copyOf(edge, edge.length + 1);
+            edge[3] = i;
+            edges[i] = edge;
         }
         
-        return Arrays.asList(criticals, pseduos);
+        Arrays.sort(edges, (a, b) -> Integer.compare(a[2], b[2]));
+
+        int mstwt = findMST(n, edges, -1, -1);
+
+        for (int i = 0; i < edges.length; i++) {
+            if (mstwt < findMST(n, edges, i, -1))
+                critical.add(edges[i][3]);
+            else if (mstwt == findMST(n, edges, -1, i))
+                pseudoCritical.add(edges[i][3]);
+        }
+
+        List<List<Integer>> result = new ArrayList<>();
+        result.add(critical);
+        result.add(pseudoCritical);
+        return result;
     }
-    
-    private int buildMST(int n, int[][] edges, int[] pick, int[] skip){
+
+    private int findMST(int n, int[][] edges, int block, int e) {
         UnionFind uf = new UnionFind(n);
-        int cost = 0;
-        if(pick != null){
-            uf.union(pick[0], pick[1]);
-            cost += pick[2];
+        int weight = 0;
+
+        if (e != -1) {
+            weight += edges[e][2];
+            uf.union(edges[e][0], edges[e][1]);
         }
-        
-        for(int[] edge : edges){
-            if(edge != skip && uf.union(edge[0], edge[1])){
-                cost += edge[2];
-            }
+
+        for (int i = 0; i < edges.length; i++) {
+            if (i == block)
+                continue;
+
+            if (uf.findParent(edges[i][0]) == uf.findParent(edges[i][1]))
+                continue;
+
+            uf.union(edges[i][0], edges[i][1]);
+            weight += edges[i][2];
         }
-        return uf.count == 1? cost : Integer.MAX_VALUE;
+
+        for (int i = 0; i < n; i++) {
+            if (uf.findParent(i) != uf.findParent(0))
+                return Integer.MAX_VALUE;
+        }
+
+        return weight;
     }
 }
