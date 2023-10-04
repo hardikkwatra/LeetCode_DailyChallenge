@@ -1,29 +1,26 @@
 class MyHashMap {
-
-    int[] data;
-
+ArrayList<Integer> map; 
     public MyHashMap() {
-        data = new int[1000001];
-        Arrays.fill(data, -1);
+      this.map=new ArrayList<>(100000+1);
+      for(int i=0;i<1000000+1;i++){
+          map.add(null);
+      }
     }
-
+    
     public void put(int key, int value) {
-        data[key] = value;
+        map.set(key,value);
     }
-
+    
     public int get(int key) {
-        return data[key];
+        if(map.get(key)==null){
+            return -1;
+        }
+        else{
+            return map.get(key);
+        }
     }
-
+    
     public void remove(int key) {
-        data[key] = -1;
+        map.set(key,null);
     }
 }
-
-/**
- * Your MyHashMap object will be instantiated and called as such:
- * MyHashMap obj = new MyHashMap();
- * obj.put(key,value);
- * int param_2 = obj.get(key);
- * obj.remove(key);
- */
