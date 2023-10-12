@@ -4,10 +4,10 @@ class Solution {
         
         for(int i = 0; i < operations.length; i++){
             if(operations[i].equals("--X") || operations[i].equals("X--")){
-                ans -= 1;
+                ans--;
             }
             else{
-                ans += 1;
+                ans++;
             }
         }
         return ans;
