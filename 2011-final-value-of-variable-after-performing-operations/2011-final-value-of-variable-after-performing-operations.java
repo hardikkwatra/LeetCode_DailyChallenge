@@ -1,15 +1,16 @@
 class Solution {
     public int finalValueAfterOperations(String[] operations) {
-     int ans = 0;
-        
-        for(int i = 0; i < operations.length; i++){
-            if(operations[i].equals("--X") || operations[i].equals("X--")){
-                ans--;
-            }
-            else{
-                ans++;
-            }
+    int ans = 0;
+    
+    for (String operation : operations) {
+        if (operation.charAt(1) == '-') {
+            ans--;
+        } else {
+            ans++;
         }
-        return ans;
     }
+    
+    return ans;
+}
+
 }
