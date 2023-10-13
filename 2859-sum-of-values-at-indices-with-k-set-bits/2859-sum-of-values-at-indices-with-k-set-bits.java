@@ -6,7 +6,6 @@ class Solution {
                 sum += nums.get(i);
             }
         }
-        System.gc();
         return sum;
     }
 }
