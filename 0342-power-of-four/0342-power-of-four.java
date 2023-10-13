@@ -1,5 +1,10 @@
 class Solution {
     public boolean isPowerOfFour(int n) {
-        return n > 0 && (n & (n - 1)) == 0 && (n & 0x55555555) != 0;
+        if (n <= 0) {
+            return false;
+        }
+        
+        double logBase4 = Math.log(n) / Math.log(4);
+        return Math.abs(logBase4 - Math.round(logBase4)) < 1e-10;
     }
 }
