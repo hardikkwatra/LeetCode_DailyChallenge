@@ -1,12 +1,22 @@
-import java.math.BigInteger;
-
 class Solution {
     public String addStrings(String num1, String num2) {
-        BigInteger i = new BigInteger(num1);
-        BigInteger j = new BigInteger(num2);
+        StringBuilder result = new StringBuilder();
+        int carry = 0;
+        int i = num1.length() - 1;
+        int j = num2.length() - 1;
 
-        BigInteger sum = i.add(j);
+        while (i >= 0 || j >= 0 || carry > 0) {
+            int x = (i >= 0) ? num1.charAt(i) - '0' : 0;
+            int y = (j >= 0) ? num2.charAt(j) - '0' : 0;
 
-        return sum.toString();
+            int sum = x + y + carry;
+            result.insert(0, sum % 10);
+            carry = sum / 10;
+
+            i--;
+            j--;
+        }
+
+        return result.toString();
     }
 }
