@@ -1,33 +1,18 @@
 class Solution {
+    public void largestValues(TreeNode root, ArrayList<Integer> list, int level) {
+        if (root == null) return;
+        if (list.size() == level) {
+            list.add(root.val);
+        }
+        else if (root.val > list.get(level)) {
+            list.set(level, root.val);
+        }
+        largestValues (root.left, list, level + 1);
+        largestValues (root.right, list, level + 1);
+    }
     public List<Integer> largestValues(TreeNode root) {
-        if (root == null) {
-            return new ArrayList<Integer>();
-        }
-        
-        List<Integer> ans = new ArrayList<>();
-        Stack<Pair<TreeNode, Integer>> stack = new Stack<>();
-        stack.push(new Pair<>(root, 0));
-        
-        while (!stack.isEmpty()) {
-            Pair<TreeNode, Integer> pair = stack.pop();
-            TreeNode node = pair.getKey();
-            int depth = pair.getValue();
-            
-            if (depth == ans.size()) {
-                ans.add(node.val);
-            } else {
-                ans.set(depth, Math.max(ans.get(depth), node.val));
-            }
-            
-            if (node.left != null) {
-                stack.push(new Pair<>(node.left, depth + 1));
-            }
-            
-            if (node.right != null) {
-                stack.push(new Pair<>(node.right, depth + 1));
-            }
-        }
-        
-        return ans;
+        ArrayList<Integer> list = new ArrayList();
+        largestValues (root, list, 0);
+        return list;
     }
 }
