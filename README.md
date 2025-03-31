@@ -5,18 +5,16 @@ Thought for 4 seconds### Vercel vs Replit: Architecture Comparison
 ### Vercel Architecture
 
 ```mermaid
-Vercel Architecture.download-icon {
-            cursor: pointer;
-            transform-origin: center;
-        }
-        .download-icon .arrow-part {
-            transition: transform 0.35s cubic-bezier(0.35, 0.2, 0.14, 0.95);
-             transform-origin: center;
-        }
-        button:has(.download-icon):hover .download-icon .arrow-part, button:has(.download-icon):focus-visible .download-icon .arrow-part {
-          transform: translateY(-1.5px);
-        }
-        #mermaid-diagram-r21em{font-family:var(--font-geist-sans);font-size:12px;fill:#000000;}#mermaid-diagram-r21em .error-icon{fill:#552222;}#mermaid-diagram-r21em .error-text{fill:#552222;stroke:#552222;}#mermaid-diagram-r21em .edge-thickness-normal{stroke-width:1px;}#mermaid-diagram-r21em .edge-thickness-thick{stroke-width:3.5px;}#mermaid-diagram-r21em .edge-pattern-solid{stroke-dasharray:0;}#mermaid-diagram-r21em .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-diagram-r21em .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-diagram-r21em .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-diagram-r21em .marker{fill:#666;stroke:#666;}#mermaid-diagram-r21em .marker.cross{stroke:#666;}#mermaid-diagram-r21em svg{font-family:var(--font-geist-sans);font-size:12px;}#mermaid-diagram-r21em p{margin:0;}#mermaid-diagram-r21em .label{font-family:var(--font-geist-sans);color:#000000;}#mermaid-diagram-r21em .cluster-label text{fill:#333;}#mermaid-diagram-r21em .cluster-label span{color:#333;}#mermaid-diagram-r21em .cluster-label span p{background-color:transparent;}#mermaid-diagram-r21em .label text,#mermaid-diagram-r21em span{fill:#000000;color:#000000;}#mermaid-diagram-r21em .node rect,#mermaid-diagram-r21em .node circle,#mermaid-diagram-r21em .node ellipse,#mermaid-diagram-r21em .node polygon,#mermaid-diagram-r21em .node path{fill:#eee;stroke:#999;stroke-width:1px;}#mermaid-diagram-r21em .rough-node .label text,#mermaid-diagram-r21em .node .label text{text-anchor:middle;}#mermaid-diagram-r21em .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#mermaid-diagram-r21em .node .label{text-align:center;}#mermaid-diagram-r21em .node.clickable{cursor:pointer;}#mermaid-diagram-r21em .arrowheadPath{fill:#333333;}#mermaid-diagram-r21em .edgePath .path{stroke:#666;stroke-width:2.0px;}#mermaid-diagram-r21em .flowchart-link{stroke:#666;fill:none;}#mermaid-diagram-r21em .edgeLabel{background-color:white;text-align:center;}#mermaid-diagram-r21em .edgeLabel p{background-color:white;}#mermaid-diagram-r21em .edgeLabel rect{opacity:0.5;background-color:white;fill:white;}#mermaid-diagram-r21em .labelBkg{background-color:rgba(255, 255, 255, 0.5);}#mermaid-diagram-r21em .cluster rect{fill:hsl(0, 0%, 98.9215686275%);stroke:#707070;stroke-width:1px;}#mermaid-diagram-r21em .cluster text{fill:#333;}#mermaid-diagram-r21em .cluster span{color:#333;}#mermaid-diagram-r21em div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:var(--font-geist-sans);font-size:12px;background:hsl(-160, 0%, 93.3333333333%);border:1px solid #707070;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-diagram-r21em .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#000000;}#mermaid-diagram-r21em .flowchart-link{stroke:hsl(var(--gray-400));stroke-width:1px;}#mermaid-diagram-r21em .marker,#mermaid-diagram-r21em marker,#mermaid-diagram-r21em marker *{fill:hsl(var(--gray-400))!important;stroke:hsl(var(--gray-400))!important;}#mermaid-diagram-r21em .label,#mermaid-diagram-r21em text,#mermaid-diagram-r21em text>tspan{fill:hsl(var(--black))!important;color:hsl(var(--black))!important;}#mermaid-diagram-r21em .background,#mermaid-diagram-r21em rect.relationshipLabelBox{fill:hsl(var(--white))!important;}#mermaid-diagram-r21em .entityBox,#mermaid-diagram-r21em .attributeBoxEven{fill:hsl(var(--gray-150))!important;}#mermaid-diagram-r21em .attributeBoxOdd{fill:hsl(var(--white))!important;}#mermaid-diagram-r21em .label-container,#mermaid-diagram-r21em rect.actor{fill:hsl(var(--white))!important;stroke:hsl(var(--gray-400))!important;}#mermaid-diagram-r21em line{stroke:hsl(var(--gray-400))!important;}#mermaid-diagram-r21em :root{--mermaid-font-family:var(--font-geist-sans);}Push/PRStatic AssetsServerless FunctionsRequestAPI CallsPreview DeploymentsGit RepositoryVercel Build SystemGlobal CDNEdge NetworkClient BrowserDevelopment Environment
+graph TD
+    Push/PR --> Git Repository
+    Git Repository -->|API Calls| Serverless Functions
+    Git Repository -->|Static Assets| Global CDN
+    Serverless Functions --> Preview Deployments
+    Static Assets --> Edge Network
+    Edge Network --> Client Browser
+    Vercel Build System --> Git Repository
+    Development Environment --> Push/PR
+
 ```
 
 Vercel's architecture centers on a serverless deployment model optimized for frontend frameworks. When code is pushed to a connected Git repository, the build system processes it, optimizing for frameworks like Next.js. Static assets deploy to a global CDN while dynamic functionality runs as serverless functions on the Edge Network. Every pull request generates an isolated preview deployment with its own URL.
