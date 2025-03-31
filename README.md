@@ -6,15 +6,14 @@ Thought for 4 seconds### Vercel vs Replit: Architecture Comparison
 
 ```mermaid
 graph TD
-    Push/PR --> Git Repository
-    Git Repository -->|API Calls| Serverless Functions
-    Git Repository -->|Static Assets| Global CDN
-    Serverless Functions --> Preview Deployments
-    Static Assets --> Edge Network
-    Edge Network --> Client Browser
-    Vercel Build System --> Git Repository
-    Development Environment --> Push/PR
-
+    Push_PR --> Git_Repository
+    Git_Repository -->|API Calls| Serverless_Functions
+    Git_Repository -->|Static Assets| Global_CDN
+    Serverless_Functions --> Preview_Deployments
+    Static_Assets --> Edge_Network
+    Edge_Network --> Client_Browser
+    Vercel_Build_System --> Git_Repository
+    Development_Environment --> Push_PR
 ```
 
 Vercel's architecture centers on a serverless deployment model optimized for frontend frameworks. When code is pushed to a connected Git repository, the build system processes it, optimizing for frameworks like Next.js. Static assets deploy to a global CDN while dynamic functionality runs as serverless functions on the Edge Network. Every pull request generates an isolated preview deployment with its own URL.
