@@ -1,4 +1,4 @@
-Thought for 4 seconds### Vercel vs Replit: Architecture Comparison
+### Vercel vs Replit: Architecture Comparison
 
 ## Core Architecture Visualizations
 
