@@ -1,4 +1,4 @@
-### Vercel vs Replit: Architecture Comparison
+# Vercel vs Replit: Architecture Comparison
 
 ## Core Architecture Visualizations
 
