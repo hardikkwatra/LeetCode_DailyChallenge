@@ -37,18 +37,20 @@ Replit provides a complete browser-based development environment. Each project r
 ### Web2 Implementation Comparison
 
 ```mermaid
-To-Do App Architecture Comparison.download-icon {
-            cursor: pointer;
-            transform-origin: center;
-        }
-        .download-icon .arrow-part {
-            transition: transform 0.35s cubic-bezier(0.35, 0.2, 0.14, 0.95);
-             transform-origin: center;
-        }
-        button:has(.download-icon):hover .download-icon .arrow-part, button:has(.download-icon):focus-visible .download-icon .arrow-part {
-          transform: translateY(-1.5px);
-        }
-        #mermaid-diagram-r21f9{font-family:var(--font-geist-sans);font-size:12px;fill:#000000;}#mermaid-diagram-r21f9 .error-icon{fill:#552222;}#mermaid-diagram-r21f9 .error-text{fill:#552222;stroke:#552222;}#mermaid-diagram-r21f9 .edge-thickness-normal{stroke-width:1px;}#mermaid-diagram-r21f9 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-diagram-r21f9 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-diagram-r21f9 .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-diagram-r21f9 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-diagram-r21f9 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-diagram-r21f9 .marker{fill:#666;stroke:#666;}#mermaid-diagram-r21f9 .marker.cross{stroke:#666;}#mermaid-diagram-r21f9 svg{font-family:var(--font-geist-sans);font-size:12px;}#mermaid-diagram-r21f9 p{margin:0;}#mermaid-diagram-r21f9 .label{font-family:var(--font-geist-sans);color:#000000;}#mermaid-diagram-r21f9 .cluster-label text{fill:#333;}#mermaid-diagram-r21f9 .cluster-label span{color:#333;}#mermaid-diagram-r21f9 .cluster-label span p{background-color:transparent;}#mermaid-diagram-r21f9 .label text,#mermaid-diagram-r21f9 span{fill:#000000;color:#000000;}#mermaid-diagram-r21f9 .node rect,#mermaid-diagram-r21f9 .node circle,#mermaid-diagram-r21f9 .node ellipse,#mermaid-diagram-r21f9 .node polygon,#mermaid-diagram-r21f9 .node path{fill:#eee;stroke:#999;stroke-width:1px;}#mermaid-diagram-r21f9 .rough-node .label text,#mermaid-diagram-r21f9 .node .label text{text-anchor:middle;}#mermaid-diagram-r21f9 .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#mermaid-diagram-r21f9 .node .label{text-align:center;}#mermaid-diagram-r21f9 .node.clickable{cursor:pointer;}#mermaid-diagram-r21f9 .arrowheadPath{fill:#333333;}#mermaid-diagram-r21f9 .edgePath .path{stroke:#666;stroke-width:2.0px;}#mermaid-diagram-r21f9 .flowchart-link{stroke:#666;fill:none;}#mermaid-diagram-r21f9 .edgeLabel{background-color:white;text-align:center;}#mermaid-diagram-r21f9 .edgeLabel p{background-color:white;}#mermaid-diagram-r21f9 .edgeLabel rect{opacity:0.5;background-color:white;fill:white;}#mermaid-diagram-r21f9 .labelBkg{background-color:rgba(255, 255, 255, 0.5);}#mermaid-diagram-r21f9 .cluster rect{fill:hsl(0, 0%, 98.9215686275%);stroke:#707070;stroke-width:1px;}#mermaid-diagram-r21f9 .cluster text{fill:#333;}#mermaid-diagram-r21f9 .cluster span{color:#333;}#mermaid-diagram-r21f9 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:var(--font-geist-sans);font-size:12px;background:hsl(-160, 0%, 93.3333333333%);border:1px solid #707070;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-diagram-r21f9 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#000000;}#mermaid-diagram-r21f9 .flowchart-link{stroke:hsl(var(--gray-400));stroke-width:1px;}#mermaid-diagram-r21f9 .marker,#mermaid-diagram-r21f9 marker,#mermaid-diagram-r21f9 marker *{fill:hsl(var(--gray-400))!important;stroke:hsl(var(--gray-400))!important;}#mermaid-diagram-r21f9 .label,#mermaid-diagram-r21f9 text,#mermaid-diagram-r21f9 text>tspan{fill:hsl(var(--black))!important;color:hsl(var(--black))!important;}#mermaid-diagram-r21f9 .background,#mermaid-diagram-r21f9 rect.relationshipLabelBox{fill:hsl(var(--white))!important;}#mermaid-diagram-r21f9 .entityBox,#mermaid-diagram-r21f9 .attributeBoxEven{fill:hsl(var(--gray-150))!important;}#mermaid-diagram-r21f9 .attributeBoxOdd{fill:hsl(var(--white))!important;}#mermaid-diagram-r21f9 .label-container,#mermaid-diagram-r21f9 rect.actor{fill:hsl(var(--white))!important;stroke:hsl(var(--gray-400))!important;}#mermaid-diagram-r21f9 line{stroke:hsl(var(--gray-400))!important;}#mermaid-diagram-r21f9 :root{--mermaid-font-family:var(--font-geist-sans);}Replit ImplementationDirect AccessData OperationsUser ContextAll AssetsFrontend CodeAlways-on ServerReplit DatabaseAuthenticationSingle ContainerClient BrowserVercel ImplementationAPI CallsData OperationsUser ContextStatic AssetsNext.js FrontendServerless API RoutesCloud DatabaseAuthenticationCDNClient Browser
+graph TD;
+    subgraph "Vercel Implementation"
+        A1["Next.js Frontend"] -->|API Calls| B1["Serverless API Routes"]
+        B1 -->|Data Operations| C1["Cloud Database"]
+        D1["Authentication"] -->|User Context| A1
+        E1["CDN"] -->|Static Assets| F1["Client Browser"]
+    end
+    
+    subgraph "Replit Implementation"
+        A2["Frontend Code"] -->|Direct Access| B2["Always-on Server"]
+        B2 -->|Data Operations| C2["Replit Database"]
+        D2["Authentication"] -->|User Context| B2
+        E2["Single Container"] -->|All Assets| F2["Client Browser"]
+    end
 ```
 
 **Vercel Web2 Strengths:**
@@ -72,18 +74,20 @@ To-Do App Architecture Comparison.download-icon {
 ### Web3 Implementation Comparison
 
 ```mermaid
-Web3 Implementation Comparison.download-icon {
-            cursor: pointer;
-            transform-origin: center;
-        }
-        .download-icon .arrow-part {
-            transition: transform 0.35s cubic-bezier(0.35, 0.2, 0.14, 0.95);
-             transform-origin: center;
-        }
-        button:has(.download-icon):hover .download-icon .arrow-part, button:has(.download-icon):focus-visible .download-icon .arrow-part {
-          transform: translateY(-1.5px);
-        }
-        #mermaid-diagram-r21gm{font-family:var(--font-geist-sans);font-size:12px;fill:#000000;}#mermaid-diagram-r21gm .error-icon{fill:#552222;}#mermaid-diagram-r21gm .error-text{fill:#552222;stroke:#552222;}#mermaid-diagram-r21gm .edge-thickness-normal{stroke-width:1px;}#mermaid-diagram-r21gm .edge-thickness-thick{stroke-width:3.5px;}#mermaid-diagram-r21gm .edge-pattern-solid{stroke-dasharray:0;}#mermaid-diagram-r21gm .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-diagram-r21gm .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-diagram-r21gm .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-diagram-r21gm .marker{fill:#666;stroke:#666;}#mermaid-diagram-r21gm .marker.cross{stroke:#666;}#mermaid-diagram-r21gm svg{font-family:var(--font-geist-sans);font-size:12px;}#mermaid-diagram-r21gm p{margin:0;}#mermaid-diagram-r21gm .label{font-family:var(--font-geist-sans);color:#000000;}#mermaid-diagram-r21gm .cluster-label text{fill:#333;}#mermaid-diagram-r21gm .cluster-label span{color:#333;}#mermaid-diagram-r21gm .cluster-label span p{background-color:transparent;}#mermaid-diagram-r21gm .label text,#mermaid-diagram-r21gm span{fill:#000000;color:#000000;}#mermaid-diagram-r21gm .node rect,#mermaid-diagram-r21gm .node circle,#mermaid-diagram-r21gm .node ellipse,#mermaid-diagram-r21gm .node polygon,#mermaid-diagram-r21gm .node path{fill:#eee;stroke:#999;stroke-width:1px;}#mermaid-diagram-r21gm .rough-node .label text,#mermaid-diagram-r21gm .node .label text{text-anchor:middle;}#mermaid-diagram-r21gm .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#mermaid-diagram-r21gm .node .label{text-align:center;}#mermaid-diagram-r21gm .node.clickable{cursor:pointer;}#mermaid-diagram-r21gm .arrowheadPath{fill:#333333;}#mermaid-diagram-r21gm .edgePath .path{stroke:#666;stroke-width:2.0px;}#mermaid-diagram-r21gm .flowchart-link{stroke:#666;fill:none;}#mermaid-diagram-r21gm .edgeLabel{background-color:white;text-align:center;}#mermaid-diagram-r21gm .edgeLabel p{background-color:white;}#mermaid-diagram-r21gm .edgeLabel rect{opacity:0.5;background-color:white;fill:white;}#mermaid-diagram-r21gm .labelBkg{background-color:rgba(255, 255, 255, 0.5);}#mermaid-diagram-r21gm .cluster rect{fill:hsl(0, 0%, 98.9215686275%);stroke:#707070;stroke-width:1px;}#mermaid-diagram-r21gm .cluster text{fill:#333;}#mermaid-diagram-r21gm .cluster span{color:#333;}#mermaid-diagram-r21gm div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:var(--font-geist-sans);font-size:12px;background:hsl(-160, 0%, 93.3333333333%);border:1px solid #707070;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-diagram-r21gm .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#000000;}#mermaid-diagram-r21gm .flowchart-link{stroke:hsl(var(--gray-400));stroke-width:1px;}#mermaid-diagram-r21gm .marker,#mermaid-diagram-r21gm marker,#mermaid-diagram-r21gm marker *{fill:hsl(var(--gray-400))!important;stroke:hsl(var(--gray-400))!important;}#mermaid-diagram-r21gm .label,#mermaid-diagram-r21gm text,#mermaid-diagram-r21gm text>tspan{fill:hsl(var(--black))!important;color:hsl(var(--black))!important;}#mermaid-diagram-r21gm .background,#mermaid-diagram-r21gm rect.relationshipLabelBox{fill:hsl(var(--white))!important;}#mermaid-diagram-r21gm .entityBox,#mermaid-diagram-r21gm .attributeBoxEven{fill:hsl(var(--gray-150))!important;}#mermaid-diagram-r21gm .attributeBoxOdd{fill:hsl(var(--white))!important;}#mermaid-diagram-r21gm .label-container,#mermaid-diagram-r21gm rect.actor{fill:hsl(var(--white))!important;stroke:hsl(var(--gray-400))!important;}#mermaid-diagram-r21gm line{stroke:hsl(var(--gray-400))!important;}#mermaid-diagram-r21gm :root{--mermaid-font-family:var(--font-geist-sans);}Replit dApp ArchitectureContract CallsCompilationDeploymentDevelopment &amp; HostingFrontend CodeSmart ContractsSolidity CodeContract DeploymentSingle EnvironmentComplete dAppVercel dApp Architectureethers.jsAPI CallsContract InteractionTransaction SigningReact/Next.js FrontendSmart ContractsServerless FunctionsBlockchain ProviderUser Wallet
+graph TD;
+    subgraph "Vercel dApp Architecture"
+        A1["React/Next.js Frontend"] -->|ethers.js| B1["Smart Contracts"]
+        C1["Serverless Functions"] -->|API Calls| D1["Blockchain Provider"]
+        D1 -->|Contract Interaction| B1
+        E1["User Wallet"] -->|Transaction Signing| A1
+    end
+    
+    subgraph "Replit dApp Architecture"
+        A2["Frontend Code"] -->|Contract Calls| B2["Smart Contracts"]
+        C2["Solidity Code"] -->|Compilation| D2["Contract Deployment"]
+        D2 -->|Deployment| B2
+        E2["Single Environment"] -->|Development & Hosting| F2["Complete dApp"]
+    end
 ```
 
 **Vercel Web3 Strengths:**
@@ -109,18 +113,13 @@ Web3 Implementation Comparison.download-icon {
 **1. AI-Powered Content Platform with Edge Processing**
 
 ```mermaid
-AI Content Platform on Vercel.download-icon {
-            cursor: pointer;
-            transform-origin: center;
-        }
-        .download-icon .arrow-part {
-            transition: transform 0.35s cubic-bezier(0.35, 0.2, 0.14, 0.95);
-             transform-origin: center;
-        }
-        button:has(.download-icon):hover .download-icon .arrow-part, button:has(.download-icon):focus-visible .download-icon .arrow-part {
-          transform: translateY(-1.5px);
-        }
-        #mermaid-diagram-r21i4{font-family:var(--font-geist-sans);font-size:12px;fill:#000000;}#mermaid-diagram-r21i4 .error-icon{fill:#552222;}#mermaid-diagram-r21i4 .error-text{fill:#552222;stroke:#552222;}#mermaid-diagram-r21i4 .edge-thickness-normal{stroke-width:1px;}#mermaid-diagram-r21i4 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-diagram-r21i4 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-diagram-r21i4 .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-diagram-r21i4 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-diagram-r21i4 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-diagram-r21i4 .marker{fill:#666;stroke:#666;}#mermaid-diagram-r21i4 .marker.cross{stroke:#666;}#mermaid-diagram-r21i4 svg{font-family:var(--font-geist-sans);font-size:12px;}#mermaid-diagram-r21i4 p{margin:0;}#mermaid-diagram-r21i4 .label{font-family:var(--font-geist-sans);color:#000000;}#mermaid-diagram-r21i4 .cluster-label text{fill:#333;}#mermaid-diagram-r21i4 .cluster-label span{color:#333;}#mermaid-diagram-r21i4 .cluster-label span p{background-color:transparent;}#mermaid-diagram-r21i4 .label text,#mermaid-diagram-r21i4 span{fill:#000000;color:#000000;}#mermaid-diagram-r21i4 .node rect,#mermaid-diagram-r21i4 .node circle,#mermaid-diagram-r21i4 .node ellipse,#mermaid-diagram-r21i4 .node polygon,#mermaid-diagram-r21i4 .node path{fill:#eee;stroke:#999;stroke-width:1px;}#mermaid-diagram-r21i4 .rough-node .label text,#mermaid-diagram-r21i4 .node .label text{text-anchor:middle;}#mermaid-diagram-r21i4 .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#mermaid-diagram-r21i4 .node .label{text-align:center;}#mermaid-diagram-r21i4 .node.clickable{cursor:pointer;}#mermaid-diagram-r21i4 .arrowheadPath{fill:#333333;}#mermaid-diagram-r21i4 .edgePath .path{stroke:#666;stroke-width:2.0px;}#mermaid-diagram-r21i4 .flowchart-link{stroke:#666;fill:none;}#mermaid-diagram-r21i4 .edgeLabel{background-color:white;text-align:center;}#mermaid-diagram-r21i4 .edgeLabel p{background-color:white;}#mermaid-diagram-r21i4 .edgeLabel rect{opacity:0.5;background-color:white;fill:white;}#mermaid-diagram-r21i4 .labelBkg{background-color:rgba(255, 255, 255, 0.5);}#mermaid-diagram-r21i4 .cluster rect{fill:hsl(0, 0%, 98.9215686275%);stroke:#707070;stroke-width:1px;}#mermaid-diagram-r21i4 .cluster text{fill:#333;}#mermaid-diagram-r21i4 .cluster span{color:#333;}#mermaid-diagram-r21i4 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:var(--font-geist-sans);font-size:12px;background:hsl(-160, 0%, 93.3333333333%);border:1px solid #707070;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-diagram-r21i4 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#000000;}#mermaid-diagram-r21i4 .flowchart-link{stroke:hsl(var(--gray-400));stroke-width:1px;}#mermaid-diagram-r21i4 .marker,#mermaid-diagram-r21i4 marker,#mermaid-diagram-r21i4 marker *{fill:hsl(var(--gray-400))!important;stroke:hsl(var(--gray-400))!important;}#mermaid-diagram-r21i4 .label,#mermaid-diagram-r21i4 text,#mermaid-diagram-r21i4 text>tspan{fill:hsl(var(--black))!important;color:hsl(var(--black))!important;}#mermaid-diagram-r21i4 .background,#mermaid-diagram-r21i4 rect.relationshipLabelBox{fill:hsl(var(--white))!important;}#mermaid-diagram-r21i4 .entityBox,#mermaid-diagram-r21i4 .attributeBoxEven{fill:hsl(var(--gray-150))!important;}#mermaid-diagram-r21i4 .attributeBoxOdd{fill:hsl(var(--white))!important;}#mermaid-diagram-r21i4 .label-container,#mermaid-diagram-r21i4 rect.actor{fill:hsl(var(--white))!important;stroke:hsl(var(--gray-400))!important;}#mermaid-diagram-r21i4 line{stroke:hsl(var(--gray-400))!important;}#mermaid-diagram-r21i4 :root{--mermaid-font-family:var(--font-geist-sans);}User RequestContent RequestAI ProcessingPersonalized ContentOptimized ResponseStatic AssetsNext.js FrontendEdge FunctionsContent APIAI Models via APICDN
+graph TD;
+    A["Next.js Frontend"] -->|User Request| B["Edge Functions"]
+    B -->|Content Request| C["Content API"]
+    B -->|AI Processing| D["AI Models via API"]
+    D -->|Personalized Content| B
+    B -->|Optimized Response| A
+    E["CDN"] -->|Static Assets| A
 ```
 
 This platform uses Vercel's edge functions to process user requests and personalize content using AI models. The edge functions determine which content to serve based on user behavior, preferences, and context, then apply AI transformations before sending the response. This architecture minimizes latency while delivering highly personalized experiences.
@@ -128,18 +127,12 @@ This platform uses Vercel's edge functions to process user requests and personal
 **2. Hybrid Web3 Analytics Dashboard**
 
 ```mermaid
-Hybrid Web3 Analytics on Vercel.download-icon {
-            cursor: pointer;
-            transform-origin: center;
-        }
-        .download-icon .arrow-part {
-            transition: transform 0.35s cubic-bezier(0.35, 0.2, 0.14, 0.95);
-             transform-origin: center;
-        }
-        button:has(.download-icon):hover .download-icon .arrow-part, button:has(.download-icon):focus-visible .download-icon .arrow-part {
-          transform: translateY(-1.5px);
-        }
-        #mermaid-diagram-r21id{font-family:var(--font-geist-sans);font-size:12px;fill:#000000;}#mermaid-diagram-r21id .error-icon{fill:#552222;}#mermaid-diagram-r21id .error-text{fill:#552222;stroke:#552222;}#mermaid-diagram-r21id .edge-thickness-normal{stroke-width:1px;}#mermaid-diagram-r21id .edge-thickness-thick{stroke-width:3.5px;}#mermaid-diagram-r21id .edge-pattern-solid{stroke-dasharray:0;}#mermaid-diagram-r21id .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-diagram-r21id .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-diagram-r21id .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-diagram-r21id .marker{fill:#666;stroke:#666;}#mermaid-diagram-r21id .marker.cross{stroke:#666;}#mermaid-diagram-r21id svg{font-family:var(--font-geist-sans);font-size:12px;}#mermaid-diagram-r21id p{margin:0;}#mermaid-diagram-r21id .label{font-family:var(--font-geist-sans);color:#000000;}#mermaid-diagram-r21id .cluster-label text{fill:#333;}#mermaid-diagram-r21id .cluster-label span{color:#333;}#mermaid-diagram-r21id .cluster-label span p{background-color:transparent;}#mermaid-diagram-r21id .label text,#mermaid-diagram-r21id span{fill:#000000;color:#000000;}#mermaid-diagram-r21id .node rect,#mermaid-diagram-r21id .node circle,#mermaid-diagram-r21id .node ellipse,#mermaid-diagram-r21id .node polygon,#mermaid-diagram-r21id .node path{fill:#eee;stroke:#999;stroke-width:1px;}#mermaid-diagram-r21id .rough-node .label text,#mermaid-diagram-r21id .node .label text{text-anchor:middle;}#mermaid-diagram-r21id .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#mermaid-diagram-r21id .node .label{text-align:center;}#mermaid-diagram-r21id .node.clickable{cursor:pointer;}#mermaid-diagram-r21id .arrowheadPath{fill:#333333;}#mermaid-diagram-r21id .edgePath .path{stroke:#666;stroke-width:2.0px;}#mermaid-diagram-r21id .flowchart-link{stroke:#666;fill:none;}#mermaid-diagram-r21id .edgeLabel{background-color:white;text-align:center;}#mermaid-diagram-r21id .edgeLabel p{background-color:white;}#mermaid-diagram-r21id .edgeLabel rect{opacity:0.5;background-color:white;fill:white;}#mermaid-diagram-r21id .labelBkg{background-color:rgba(255, 255, 255, 0.5);}#mermaid-diagram-r21id .cluster rect{fill:hsl(0, 0%, 98.9215686275%);stroke:#707070;stroke-width:1px;}#mermaid-diagram-r21id .cluster text{fill:#333;}#mermaid-diagram-r21id .cluster span{color:#333;}#mermaid-diagram-r21id div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:var(--font-geist-sans);font-size:12px;background:hsl(-160, 0%, 93.3333333333%);border:1px solid #707070;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-diagram-r21id .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#000000;}#mermaid-diagram-r21id .flowchart-link{stroke:hsl(var(--gray-400));stroke-width:1px;}#mermaid-diagram-r21id .marker,#mermaid-diagram-r21id marker,#mermaid-diagram-r21id marker *{fill:hsl(var(--gray-400))!important;stroke:hsl(var(--gray-400))!important;}#mermaid-diagram-r21id .label,#mermaid-diagram-r21id text,#mermaid-diagram-r21id text>tspan{fill:hsl(var(--black))!important;color:hsl(var(--black))!important;}#mermaid-diagram-r21id .background,#mermaid-diagram-r21id rect.relationshipLabelBox{fill:hsl(var(--white))!important;}#mermaid-diagram-r21id .entityBox,#mermaid-diagram-r21id .attributeBoxEven{fill:hsl(var(--gray-150))!important;}#mermaid-diagram-r21id .attributeBoxOdd{fill:hsl(var(--white))!important;}#mermaid-diagram-r21id .label-container,#mermaid-diagram-r21id rect.actor{fill:hsl(var(--white))!important;stroke:hsl(var(--gray-400))!important;}#mermaid-diagram-r21id line{stroke:hsl(var(--gray-400))!important;}#mermaid-diagram-r21id :root{--mermaid-font-family:var(--font-geist-sans);}On-chain DataQueryOff-chain DataWebSocketsPre-renderedNext.js DashboardServerless IndexerBlockchain NodesDatabase APIReal-time UpdatesStatic Analytics
+graph TD;
+    A["Next.js Dashboard"] -->|On-chain Data| B["Serverless Indexer"]
+    B -->|Query| C["Blockchain Nodes"]
+    A -->|Off-chain Data| D["Database API"]
+    E["Real-time Updates"] -->|WebSockets| A
+    F["Static Analytics"] -->|Pre-rendered| A
 ```
 
 This dashboard combines on-chain and off-chain data to provide comprehensive analytics for Web3 applications. Vercel's serverless functions index blockchain data and combine it with traditional analytics. The dashboard uses incremental static regeneration for common views while providing real-time updates for critical metrics.
@@ -149,18 +142,13 @@ This dashboard combines on-chain and off-chain data to provide comprehensive ana
 **1. Collaborative Code Education Platform**
 
 ```mermaid
-Code Education Platform on Replit.download-icon {
-            cursor: pointer;
-            transform-origin: center;
-        }
-        .download-icon .arrow-part {
-            transition: transform 0.35s cubic-bezier(0.35, 0.2, 0.14, 0.95);
-             transform-origin: center;
-        }
-        button:has(.download-icon):hover .download-icon .arrow-part, button:has(.download-icon):focus-visible .download-icon .arrow-part {
-          transform: translateY(-1.5px);
-        }
-        #mermaid-diagram-r21ip{font-family:var(--font-geist-sans);font-size:12px;fill:#000000;}#mermaid-diagram-r21ip .error-icon{fill:#552222;}#mermaid-diagram-r21ip .error-text{fill:#552222;stroke:#552222;}#mermaid-diagram-r21ip .edge-thickness-normal{stroke-width:1px;}#mermaid-diagram-r21ip .edge-thickness-thick{stroke-width:3.5px;}#mermaid-diagram-r21ip .edge-pattern-solid{stroke-dasharray:0;}#mermaid-diagram-r21ip .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-diagram-r21ip .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-diagram-r21ip .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-diagram-r21ip .marker{fill:#666;stroke:#666;}#mermaid-diagram-r21ip .marker.cross{stroke:#666;}#mermaid-diagram-r21ip svg{font-family:var(--font-geist-sans);font-size:12px;}#mermaid-diagram-r21ip p{margin:0;}#mermaid-diagram-r21ip .label{font-family:var(--font-geist-sans);color:#000000;}#mermaid-diagram-r21ip .cluster-label text{fill:#333;}#mermaid-diagram-r21ip .cluster-label span{color:#333;}#mermaid-diagram-r21ip .cluster-label span p{background-color:transparent;}#mermaid-diagram-r21ip .label text,#mermaid-diagram-r21ip span{fill:#000000;color:#000000;}#mermaid-diagram-r21ip .node rect,#mermaid-diagram-r21ip .node circle,#mermaid-diagram-r21ip .node ellipse,#mermaid-diagram-r21ip .node polygon,#mermaid-diagram-r21ip .node path{fill:#eee;stroke:#999;stroke-width:1px;}#mermaid-diagram-r21ip .rough-node .label text,#mermaid-diagram-r21ip .node .label text{text-anchor:middle;}#mermaid-diagram-r21ip .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#mermaid-diagram-r21ip .node .label{text-align:center;}#mermaid-diagram-r21ip .node.clickable{cursor:pointer;}#mermaid-diagram-r21ip .arrowheadPath{fill:#333333;}#mermaid-diagram-r21ip .edgePath .path{stroke:#666;stroke-width:2.0px;}#mermaid-diagram-r21ip .flowchart-link{stroke:#666;fill:none;}#mermaid-diagram-r21ip .edgeLabel{background-color:white;text-align:center;}#mermaid-diagram-r21ip .edgeLabel p{background-color:white;}#mermaid-diagram-r21ip .edgeLabel rect{opacity:0.5;background-color:white;fill:white;}#mermaid-diagram-r21ip .labelBkg{background-color:rgba(255, 255, 255, 0.5);}#mermaid-diagram-r21ip .cluster rect{fill:hsl(0, 0%, 98.9215686275%);stroke:#707070;stroke-width:1px;}#mermaid-diagram-r21ip .cluster text{fill:#333;}#mermaid-diagram-r21ip .cluster span{color:#333;}#mermaid-diagram-r21ip div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:var(--font-geist-sans);font-size:12px;background:hsl(-160, 0%, 93.3333333333%);border:1px solid #707070;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-diagram-r21ip .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#000000;}#mermaid-diagram-r21ip .flowchart-link{stroke:hsl(var(--gray-400));stroke-width:1px;}#mermaid-diagram-r21ip .marker,#mermaid-diagram-r21ip marker,#mermaid-diagram-r21ip marker *{fill:hsl(var(--gray-400))!important;stroke:hsl(var(--gray-400))!important;}#mermaid-diagram-r21ip .label,#mermaid-diagram-r21ip text,#mermaid-diagram-r21ip text>tspan{fill:hsl(var(--black))!important;color:hsl(var(--black))!important;}#mermaid-diagram-r21ip .background,#mermaid-diagram-r21ip rect.relationshipLabelBox{fill:hsl(var(--white))!important;}#mermaid-diagram-r21ip .entityBox,#mermaid-diagram-r21ip .attributeBoxEven{fill:hsl(var(--gray-150))!important;}#mermaid-diagram-r21ip .attributeBoxOdd{fill:hsl(var(--white))!important;}#mermaid-diagram-r21ip .label-container,#mermaid-diagram-r21ip rect.actor{fill:hsl(var(--white))!important;stroke:hsl(var(--gray-400))!important;}#mermaid-diagram-r21ip line{stroke:hsl(var(--gray-400))!important;}#mermaid-diagram-r21ip :root{--mermaid-font-family:var(--font-geist-sans);}Live CodeChallengesSubmissionsFeedbackHintsProgressInstructor IDEStudent InstancesExercise RepositoryAutomated TestingAI AssistantLeaderboard
+graph TD;
+    A["Instructor IDE"] -->|Live Code| B["Student Instances"]
+    C["Exercise Repository"] -->|Challenges| B
+    B -->|Submissions| D["Automated Testing"]
+    D -->|Feedback| B
+    E["AI Assistant"] -->|Hints| B
+    F["Leaderboard"] <-->|Progress| B
 ```
 
 This platform leverages Replit's collaborative features to create an interactive coding education experience. Instructors can demonstrate concepts in real-time while students follow along in their own instances. The system automatically tests student submissions, provides AI-powered hints, and tracks progress on a leaderboard.
@@ -168,18 +156,13 @@ This platform leverages Replit's collaborative features to create an interactive
 **2. Decentralized Governance Simulator**
 
 ```mermaid
-Governance Simulator on Replit.download-icon {
-            cursor: pointer;
-            transform-origin: center;
-        }
-        .download-icon .arrow-part {
-            transition: transform 0.35s cubic-bezier(0.35, 0.2, 0.14, 0.95);
-             transform-origin: center;
-        }
-        button:has(.download-icon):hover .download-icon .arrow-part, button:has(.download-icon):focus-visible .download-icon .arrow-part {
-          transform: translateY(-1.5px);
-        }
-        #mermaid-diagram-r21j2{font-family:var(--font-geist-sans);font-size:12px;fill:#000000;}#mermaid-diagram-r21j2 .error-icon{fill:#552222;}#mermaid-diagram-r21j2 .error-text{fill:#552222;stroke:#552222;}#mermaid-diagram-r21j2 .edge-thickness-normal{stroke-width:1px;}#mermaid-diagram-r21j2 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-diagram-r21j2 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-diagram-r21j2 .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-diagram-r21j2 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-diagram-r21j2 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-diagram-r21j2 .marker{fill:#666;stroke:#666;}#mermaid-diagram-r21j2 .marker.cross{stroke:#666;}#mermaid-diagram-r21j2 svg{font-family:var(--font-geist-sans);font-size:12px;}#mermaid-diagram-r21j2 p{margin:0;}#mermaid-diagram-r21j2 .label{font-family:var(--font-geist-sans);color:#000000;}#mermaid-diagram-r21j2 .cluster-label text{fill:#333;}#mermaid-diagram-r21j2 .cluster-label span{color:#333;}#mermaid-diagram-r21j2 .cluster-label span p{background-color:transparent;}#mermaid-diagram-r21j2 .label text,#mermaid-diagram-r21j2 span{fill:#000000;color:#000000;}#mermaid-diagram-r21j2 .node rect,#mermaid-diagram-r21j2 .node circle,#mermaid-diagram-r21j2 .node ellipse,#mermaid-diagram-r21j2 .node polygon,#mermaid-diagram-r21j2 .node path{fill:#eee;stroke:#999;stroke-width:1px;}#mermaid-diagram-r21j2 .rough-node .label text,#mermaid-diagram-r21j2 .node .label text{text-anchor:middle;}#mermaid-diagram-r21j2 .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#mermaid-diagram-r21j2 .node .label{text-align:center;}#mermaid-diagram-r21j2 .node.clickable{cursor:pointer;}#mermaid-diagram-r21j2 .arrowheadPath{fill:#333333;}#mermaid-diagram-r21j2 .edgePath .path{stroke:#666;stroke-width:2.0px;}#mermaid-diagram-r21j2 .flowchart-link{stroke:#666;fill:none;}#mermaid-diagram-r21j2 .edgeLabel{background-color:white;text-align:center;}#mermaid-diagram-r21j2 .edgeLabel p{background-color:white;}#mermaid-diagram-r21j2 .edgeLabel rect{opacity:0.5;background-color:white;fill:white;}#mermaid-diagram-r21j2 .labelBkg{background-color:rgba(255, 255, 255, 0.5);}#mermaid-diagram-r21j2 .cluster rect{fill:hsl(0, 0%, 98.9215686275%);stroke:#707070;stroke-width:1px;}#mermaid-diagram-r21j2 .cluster text{fill:#333;}#mermaid-diagram-r21j2 .cluster span{color:#333;}#mermaid-diagram-r21j2 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:var(--font-geist-sans);font-size:12px;background:hsl(-160, 0%, 93.3333333333%);border:1px solid #707070;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-diagram-r21j2 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#000000;}#mermaid-diagram-r21j2 .flowchart-link{stroke:hsl(var(--gray-400));stroke-width:1px;}#mermaid-diagram-r21j2 .marker,#mermaid-diagram-r21j2 marker,#mermaid-diagram-r21j2 marker *{fill:hsl(var(--gray-400))!important;stroke:hsl(var(--gray-400))!important;}#mermaid-diagram-r21j2 .label,#mermaid-diagram-r21j2 text,#mermaid-diagram-r21j2 text>tspan{fill:hsl(var(--black))!important;color:hsl(var(--black))!important;}#mermaid-diagram-r21j2 .background,#mermaid-diagram-r21j2 rect.relationshipLabelBox{fill:hsl(var(--white))!important;}#mermaid-diagram-r21j2 .entityBox,#mermaid-diagram-r21j2 .attributeBoxEven{fill:hsl(var(--gray-150))!important;}#mermaid-diagram-r21j2 .attributeBoxOdd{fill:hsl(var(--white))!important;}#mermaid-diagram-r21j2 .label-container,#mermaid-diagram-r21j2 rect.actor{fill:hsl(var(--white))!important;stroke:hsl(var(--gray-400))!important;}#mermaid-diagram-r21j2 line{stroke:hsl(var(--gray-400))!important;}#mermaid-diagram-r21j2 :root{--mermaid-font-family:var(--font-geist-sans);}ProposalsExecutionDeployedResultsParametersConfigurationsGovernance UISimulation EngineMock BlockchainSmart ContractsVoting MechanismEconomic ModelsScenario Editor
+graph TD;
+    A["Governance UI"] -->|Proposals| B["Simulation Engine"]
+    B -->|Execution| C["Mock Blockchain"]
+    D["Smart Contracts"] -->|Deployed| C
+    E["Voting Mechanism"] -->|Results| B
+    F["Economic Models"] -->|Parameters| B
+    G["Scenario Editor"] -->|Configurations| B
 ```
 
 This simulator allows DAOs and other governance systems to test proposals in a safe environment before implementing them on-chain. Built entirely in Replit, it includes a mock blockchain, governance smart contracts, and economic models that predict outcomes. The always-on nature of Replit enables long-running simulations and collaborative scenario development.
